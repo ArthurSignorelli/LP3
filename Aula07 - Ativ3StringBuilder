@@ -1,0 +1,14 @@
+public class InsertString {
+    public static void main(String[] args) {
+        String original = "Hello, World!";
+        String toInsert = "Java ";
+        int position = 7;
+        System.out.println("Result: " + insertString(original, toInsert, position));
+    }
+
+    public static String insertString(String original, String toInsert, int position) {
+        StringBuilder sb = new StringBuilder(original);
+        sb.insert(position, toInsert);
+        return sb.toString();
+    }
+}
