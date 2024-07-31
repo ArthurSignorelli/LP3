@@ -1,0 +1,14 @@
+public class StringBuilderFromArray {
+    public static void main(String[] args) {
+        String[] words = {"Hello", "World", "from", "Java"};
+        System.out.println("Constructed string: " + buildString(words));
+    }
+
+    public static String buildString(String[] words) {
+        StringBuilder sb = new StringBuilder();
+        for (String word : words) {
+            sb.append(word).append(" ");
+        }
+        return sb.toString().trim();
+    }
+}
