@@ -1,0 +1,32 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class ContactManager {
+    public static void main(String[] args) {
+        HashMap<String, String> contacts = new HashMap<>();
+        Scanner scanner = new Scanner(System.in);
+        while (true) {
+            System.out.println("Choose an option: add, search, list, exit");
+            String option = scanner.nextLine();
+            if (option.equals("add")) {
+                System.out.println("Enter name:");
+                String name = scanner.nextLine();
+                System.out.println("Enter phone number:");
+                String phone = scanner.nextLine();
+                contacts.put(name, phone);
+            } else if (option.equals("search")) {
+                System.out.println("Enter name to search:");
+                String name = scanner.nextLine();
+                System.out.println("Phone number: " + contacts.getOrDefault(name, "Not found"));
+            } else if (option.equals("list")) {
+                System.out.println("Contacts:");
+                for (String name : contacts.keySet()) {
+                    System.out.println(name + ": " + contacts.get(name));
+                }
+            } else if (option.equals("exit")) {
+                break;
+            }
+        }
+        scanner.close();
+    }
+}
