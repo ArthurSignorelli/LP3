@@ -1,0 +1,18 @@
+import java.util.Date;
+import java.util.Calendar;
+
+public class DateComparison {
+    public static void main(String[] args) {
+        Calendar cal1 = Calendar.getInstance();
+        Calendar cal2 = Calendar.getInstance();
+        
+        cal1.set(2023, Calendar.JANUARY, 1);
+        cal2.set(2023, Calendar.JANUARY, 15);
+        
+        Date date1 = cal1.getTime();
+        Date date2 = cal2.getTime();
+        
+        System.out.println("Is date1 before date2? " + date1.before(date2));
+        System.out.println("Is date1 after date2? " + date1.after(date2));
+    }
+}
