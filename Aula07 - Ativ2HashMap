@@ -1,0 +1,23 @@
+import java.util.HashMap;
+import java.util.Scanner;
+
+public class WordFrequencyCounter {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Enter text:");
+        String text = scanner.nextLine();
+        String[] words = text.split("\\s+");
+        
+        HashMap<String, Integer> wordFrequency = new HashMap<>();
+        for (String word : words) {
+            word = word.toLowerCase();
+            wordFrequency.put(word, wordFrequency.getOrDefault(word, 0) + 1);
+        }
+        
+        System.out.println("Word frequencies:");
+        for (String word : wordFrequency.keySet()) {
+            System.out.println(word + ": " + wordFrequency.get(word));
+        }
+        scanner.close();
+    }
+}
