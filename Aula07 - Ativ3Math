@@ -1,0 +1,16 @@
+public class MaxValueFinder {
+    public static void main(String[] args) {
+        int[] numbers = {10, 20, 30, 5, 15};
+        System.out.println("The maximum value is: " + findMaxValue(numbers));
+    }
+
+    public static int findMaxValue(int[] numbers) {
+        int max = numbers[0];
+        for (int num : numbers) {
+            if (num > max) {
+                max = num;
+            }
+        }
+        return max;
+    }
+}
