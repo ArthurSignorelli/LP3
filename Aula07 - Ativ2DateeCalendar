@@ -1,0 +1,22 @@
+import java.util.Date;
+import java.util.Calendar;
+
+public class AddDaysToDate {
+    public static void main(String[] args) {
+        Calendar cal = Calendar.getInstance();
+        cal.set(2023, Calendar.JANUARY, 1);
+        
+        Date date = cal.getTime();
+        int daysToAdd = 10;
+        
+        System.out.println("Original date: " + date);
+        System.out.println("New date after adding " + daysToAdd + " days: " + addDaysToDate(date, daysToAdd));
+    }
+
+    public static Date addDaysToDate(Date date, int days) {
+        Calendar cal = Calendar.getInstance();
+        cal.setTime(date);
+        cal.add(Calendar.DAY_OF_MONTH, days);
+        return cal.getTime();
+    }
+}
