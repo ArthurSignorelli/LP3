@@ -1,0 +1,179 @@
+abstract class Peca {
+    protected int x, y;
+
+    public Peca(int x, int y) {
+        this.x = x;
+        this.y = y;
+    }
+
+    public abstract boolean mover(int novoX, int novoY);
+}
+
+class Rei extends Peca {
+    public Rei(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public boolean mover(int novoX, int novoY) {
+        if (Math.abs(novoX - x) <= 1 && Math.abs(novoY - y) <= 1) {
+            x = novoX;
+            y = novoY;
+            System.out.println("Rei movido para: " + novoX + ", " + novoY);
+            return true;
+        }
+        System.out.println("Movimento inválido para o Rei.");
+        return false;
+    }
+}
+
+class Rainha extends Peca {
+    public Rainha(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public boolean mover(int novoX, int novoY) {
+        if (novoX == x || novoY == y || Math.abs(novoX - x) == Math.abs(novoY - y)) {
+            x = novoX;
+            y = novoY;
+            System.out.println("Rainha movida para: " + novoX + ", " + novoY);
+            return true;
+        }
+        System.out.println("Movimento inválido para a Rainha.");
+        return false;
+    }
+}
+
+// Definir outras peças semelhantes (Bispo, Cavalo, Torre, Peão) aqui
+
+class Bispo extends Peca {
+    public Bispo(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public boolean mover(int novoX, int novoY) {
+        if (Math.abs(novoX - x) == Math.abs(novoY - y)) {
+            x = novoX;
+            y = novoY;
+            System.out.println("Bispo movido para: " + novoX + ", " + novoY);
+            return true;
+        }
+        System.out.println("Movimento inválido para o Bispo.");
+        return false;
+    }
+}
+
+class Cavalo extends Peca {
+    public Cavalo(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public boolean mover(int novoX, int novoY) {
+        if ((Math.abs(novoX - x) == 2 && Math.abs(novoY - y) == 1) || 
+            (Math.abs(novoX - x) == 1 && Math.abs(novoY - y) == 2)) {
+            x = novoX;
+            y = novoY;
+            System.out.println("Cavalo movido para: " + novoX + ", " + novoY);
+            return true;
+        }
+        System.out.println("Movimento inválido para o Cavalo.");
+        return false;
+    }
+}
+
+class Torre extends Peca {
+    public Torre(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public boolean mover(int novoX, int novoY) {
+        if (novoX == x || novoY == y) {
+            x = novoX;
+            y = novoY;
+            System.out.println("Torre movida para: " + novoX + ", " + novoY);
+            return true;
+        }
+        System.out.println("Movimento inválido para a Torre.");
+        return false;
+    }
+}
+
+class Peao extends Peca {
+    public Peao(int x, int y) {
+        super(x, y);
+    }
+
+    @Override
+    public boolean mover(int novoX, int novoY) {
+        if (novoX == x && (novoY == y + 1 || (y == 1 && novoY == y + 2))) {
+            y = novoY;
+            System.out.println("Peão movido para: " + novoX + ", " + novoY);
+            return true;
+        }
+        System.out.println("Movimento inválido para o Peão.");
+        return false;
+    }
+}
+
+class Tabuleiro {
+        private Peca[][] tabuleiro;
+
+    public Tabuleiro() {
+        tabuleiro = new Peca[8][8];
+    }
+
+    public void adicionarPeca(Peca peca, int x, int y) {
+        if (tabuleiro[x][y] == null) {
+            tabuleiro[x][y] = peca;
+            System.out.println("Peça adicionada em: " + x + ", " + y);
+        } else {
+            System.out.println("Já existe uma peça na posição: " + x + ", " + y);
+        }
+    }
+
+    public boolean moverPeca(int x, int y, int novoX, int novoY) {
+        Peca peca = tabuleiro[x][y];
+        if (peca != null) {
+            if (tabuleiro[novoX][novoY] == null && peca.mover(novoX, novoY)) {
+                tabuleiro[novoX][novoY] = peca;
+                tabuleiro[x][y] = null;
+                return true;
+            } else {
+                System.out.println("Movimento inválido ou posição destino ocupada para a peça na posição: " + x + ", " + y);
+            }
+        } else {
+            System.out.println("Não há peça na posição: " + x + ", " + y);
+        }
+        return false;
+    }
+}
+
+public class JogoXadrez {
+    public static void main(String[] args) {
+        Tabuleiro tabuleiro = new Tabuleiro();
+        Peca rei = new Rei(0, 0);
+        Peca rainha = new Rainha(1, 1);
+        Peca bispo = new Bispo(2, 0);
+        Peca cavalo = new Cavalo(3, 0);
+        Peca torre = new Torre(4, 0);
+        Peca peao = new Peao(5, 1);
+
+        tabuleiro.adicionarPeca(rei, 0, 0);
+        tabuleiro.adicionarPeca(rainha, 1, 1);
+        tabuleiro.adicionarPeca(bispo, 2, 0);
+        tabuleiro.adicionarPeca(cavalo, 3, 0);
+        tabuleiro.adicionarPeca(torre, 4, 0);
+        tabuleiro.adicionarPeca(peao, 5, 1);
+
+        tabuleiro.moverPeca(0, 0, 1, 1); // Movimento inválido para o Rei
+        tabuleiro.moverPeca(1, 1, 3, 3); // Movimento válido para a Rainha
+        tabuleiro.moverPeca(2, 0, 4, 2); // Movimento válido para o Bispo
+        tabuleiro.moverPeca(3, 0, 5, 1); // Movimento inválido para o Cavalo
+        tabuleiro.moverPeca(4, 0, 4, 5); // Movimento válido para a Torre
+        tabuleiro.moverPeca(5, 1, 5, 3); // Movimento inválido para o Peão
+    }
+}
