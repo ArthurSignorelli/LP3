@@ -1,0 +1,265 @@
+// Crie uma coleção que armazene os nomes de três cidades e exiba-os no console.
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class CidadesExemplo {
+    public static void main(String[] args) {
+        List<String> cidades = new ArrayList<>();
+        cidades.add("Paulínia");
+        cidades.add("São Paulo");
+        cidades.add("Campinas");
+
+        System.out.println(cidades);
+    }
+}
+
+// Crie um array de strings, ordene-o e busque por um elemento específico usando Arrays.binarySearch().
+
+import java.util.Arrays;
+
+public class OrdenaBuscaArray {
+    public static void main(String[] args) {
+        String[] nomes = {"Arthur", "Suzani", "Jose"};
+        Arrays.sort(nomes);
+
+        int index = Arrays.binarySearch(nomes, "Suzani");
+        System.out.println("Elemento encontrado no índice: " + index);
+    }
+}
+
+// Implemente uma fila usando ArrayDeque e adicione três elementos. Em seguida, remova e exiba o primeiro elemento inserido.
+
+import java.util.ArrayDeque;
+
+public class FilaExemplo {
+    public static void main(String[] args) {
+        ArrayDeque<String> fila = new ArrayDeque<>();
+        fila.add("Elemento 1");
+        fila.add("Elemento 2");
+        fila.add("Elemento 3");
+
+        String removido = fila.poll();
+        System.out.println("Elemento removido: " + removido);
+    }
+}
+
+// Crie um Vector de inteiros e adicione quatro elementos. Exiba o conteúdo do vetor.
+
+import java.util.Vector;
+
+public class VectorExemplo {
+    public static void main(String[] args) {
+        Vector<Integer> numeros = new Vector<>();
+        numeros.add(10);
+        numeros.add(20);
+        numeros.add(30);
+        numeros.add(40);
+
+        System.out.println(numeros);
+    }
+}
+
+// Crie uma pilha de strings usando Stack e adicione três elementos. Remova o topo da pilha e exiba o elemento removido.
+
+import java.util.Stack;
+
+public class PilhaExemplo {
+    public static void main(String[] args) {
+        Stack<String> pilha = new Stack<>();
+        pilha.push("Primeiro");
+        pilha.push("Segundo");
+        pilha.push("Terceiro");
+
+        String removido = pilha.pop();
+        System.out.println("Elemento removido do topo: " + removido);
+    }
+}
+
+// Crie uma LinkedList de strings e adicione três elementos. Adicione um elemento no início da lista e exiba a lista completa.
+
+import java.util.LinkedList;
+
+public class LinkedListExemplo {
+    public static void main(String[] args) {
+        LinkedList<String> lista = new LinkedList<>();
+        lista.add("Elemento 1");
+        lista.add("Elemento 2");
+        lista.add("Elemento 3");
+
+        lista.addFirst("Elemento 0");
+        System.out.println(lista);
+    }
+}
+
+// Implemente uma coleção personalizada que seja iterável, e itere sobre seus elementos usando um loop for-each.
+
+import java.util.Iterator;
+
+public class ColecaoPersonalizada implements Iterable<String> {
+    private String[] elementos = {"A", "B", "C"};
+
+    @Override
+    public Iterator<String> iterator() {
+        return Arrays.asList(elementos).iterator();
+    }
+
+    public static void main(String[] args) {
+        ColecaoPersonalizada colecao = new ColecaoPersonalizada();
+        for (String elemento : colecao) {
+            System.out.println(elemento);
+        }
+    }
+}
+
+// Crie uma lista de strings, ordene-a em ordem decrescente usando Collections.reverseOrder() e exiba a lista.
+
+import java.util.ArrayList;
+import java.util.Collections;
+
+public class ListaDecrescente {
+    public static void main(String[] args) {
+        ArrayList<String> cores = new ArrayList<>();
+        cores.add("Azul");
+        cores.add("Vermelho");
+        cores.add("Verde");
+
+        Collections.sort(cores, Collections.reverseOrder());
+        System.out.println(cores);
+    }
+}
+
+// Implemente uma coleção usando a interface Collection e adicione cinco números inteiros. Em seguida, exiba o número total de elementos.
+
+import java.util.ArrayList;
+import java.util.Collection;
+
+public class ColecaoExemplo {
+    public static void main(String[] args) {
+        Collection<Integer> numeros = new ArrayList<>();
+        numeros.add(1);
+        numeros.add(2);
+        numeros.add(3);
+        numeros.add(4);
+        numeros.add(5);
+
+        System.out.println("Número total de elementos: " + numeros.size());
+    }
+}
+
+// Crie uma lista de três cores. Exiba a cor armazenada no segundo índice.
+
+import java.util.ArrayList;
+
+public class ListaCores {
+    public static void main(String[] args) {
+        ArrayList<String> cores = new ArrayList<>();
+        cores.add("Branco");
+        cores.add("Verde");
+        cores.add("Preto");
+
+        System.out.println("Cor no segundo índice: " + cores.get(1));
+    }
+}
+
+// Crie um conjunto usando LinkedHashSet que armazene os nomes de três frutas. Adicione uma fruta duplicada e observe como a ordem de inserção é preservada.
+
+import java.util.LinkedHashSet;
+
+public class ConjuntoFrutas {
+    public static void main(String[] args) {
+        LinkedHashSet<String> frutas = new LinkedHashSet<>();
+        frutas.add("Maçã");
+        frutas.add("Banana");
+        frutas.add("Laranja");
+        frutas.add("Maçã"); // Fruta duplicada
+
+        System.out.println(frutas);
+    }
+}
+
+// Crie um mapa que armazene três pares de chave-valor representando nomes de pessoas e suas idades. Exiba a idade de uma pessoa específica.
+
+import java.util.HashMap;
+import java.util.Map;
+
+public class MapaPessoas {
+    public static void main(String[] args) {
+        Map<String, Integer> pessoas = new HashMap<>();
+        pessoas.put("Arthur", 21);
+        pessoas.put("Carlos", 20);
+        pessoas.put("Joao", 19);
+
+        System.out.println("Idade de Maria: " + pessoas.get("Arthur"));
+    }
+}
+
+// Implemente uma coleção de números inteiros. Use um Iterator para percorrer a coleção e exibir cada número no console.
+
+import java.util.ArrayList;
+import java.util.Iterator;
+
+public class IteradorExemplo {
+    public static void main(String[] args) {
+        ArrayList<Integer> numeros = new ArrayList<>();
+        numeros.add(10);
+        numeros.add(20);
+        numeros.add(30);
+
+        Iterator<Integer> iterador = numeros.iterator();
+        while (iterador.hasNext()) {
+            System.out.println(iterador.next());
+        }
+    }
+}
+
+// Crie uma classe Produto que implementa Comparable para ordenar produtos por preço. 
+// Em seguida, crie um Comparator para ordenar produtos por nome. Ordene uma lista de produtos por preço e depois por nome, exibindo a lista em cada caso.
+
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
+
+class Produto implements Comparable<Produto> {
+    String nome;
+    double preco;
+
+    Produto(String nome, double preco) {
+        this.nome = nome;
+        this.preco = preco;
+    }
+
+    @Override
+    public int compareTo(Produto outro) {
+        return Double.compare(this.preco, outro.preco);
+    }
+
+    @Override
+    public String toString() {
+        return nome + ": " + preco;
+    }
+}
+
+class OrdenaPorNome implements Comparator<Produto> {
+    @Override
+    public int compare(Produto p1, Produto p2) {
+        return p1.nome.compareTo(p2.nome);
+    }
+}
+
+public class OrdenacaoProdutos {
+    public static void main(String[] args) {
+        ArrayList<Produto> produtos = new ArrayList<>();
+        produtos.add(new Produto("TV", 5000.0));
+        produtos.add(new Produto("Notebook", 2000.0));
+        produtos.add(new Produto("Celular", 1500.0));
+
+        Collections.sort(produtos);
+        System.out.println("Ordenado por preço: " + produtos);
+
+        Collections.sort(produtos, new OrdenaPorNome());
+        System.out.println("Ordenado por nome: " + produtos);
+    }
+}
+
+
