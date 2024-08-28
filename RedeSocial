@@ -1,0 +1,186 @@
+package redesocial;
+
+public class RedeSocial {
+    public static void main(String[] args) {
+        Usuario usuario1 = new Usuario("Arthur Signorelli", "senhaAss0833", "ArthurSignorelli@example.com");
+        usuario1.getPerfil().setBiografia("Olá, eu sou o usuário 1!");
+        usuario1.criarPostagem("Boa noite, Estou na aula de LP3!");
+
+        UsuarioPremium usuario2 = new UsuarioPremium("CarlosBeluzo", "senhaIFSP", "CarlosBeluzo@example.com");
+        usuario2.criarPostagemEmDestaque("Sextamos!");
+
+        UsuarioAdmin admin = new UsuarioAdmin("admin", "adminpass", "admin@example.com");
+
+        System.out.println(usuario1.getNomeUsuario() + " postou: " + usuario1.getPostagens().get(0).getConteudo());
+
+        usuario1.getPostagens().get(0).curtir();
+        usuario1.getPostagens().get(0).comentar("Boa aula!");
+
+        System.out.println("Postagem de " + usuario1.getNomeUsuario() + " tem " + usuario1.getPostagens().get(0).getCurtidas() + " curtidas.");
+        System.out.println("Comentários: " + usuario1.getPostagens().get(0).getComentarios());
+
+        admin.deletarPostagem(usuario1.getPostagens().get(0));
+    }
+}
+package redesocial;
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Usuario {
+    private String nomeUsuario;
+    private String senha;
+    private String email;
+    private Perfil perfil;
+    private List<Postagem> postagens;
+
+    public Usuario(String nomeUsuario, String senha, String email) {
+        this.nomeUsuario = nomeUsuario;
+        this.senha = senha;
+        this.email = email;
+        this.perfil = new Perfil();
+        this.postagens = new ArrayList<>();
+    }
+
+    public String getNomeUsuario() {
+        return nomeUsuario;
+    }
+
+    public void setNomeUsuario(String nomeUsuario) {
+        this.nomeUsuario = nomeUsuario;
+    }
+
+    public boolean setSenha(String senha) {
+        if (senha.length() >= 6) { 
+            this.senha = senha;
+            return true;
+        }
+        return false;
+    }
+
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
+    public Perfil getPerfil() {
+        return perfil;
+    }
+
+    public void criarPostagem(String conteudo) {
+        Postagem postagem = new Postagem(conteudo);
+        postagens.add(postagem);
+    }
+
+    public List<Postagem> getPostagens() {
+        return postagens;
+    }
+}
+package redesocial;
+
+public class UsuarioAdmin extends Usuario {
+    public UsuarioAdmin(String nomeUsuario, String senha, String email) {
+        super(nomeUsuario, senha, email);
+    }
+
+    public void deletarPostagem(Postagem postagem) {
+        getPostagens().remove(postagem);
+    }
+
+    public void banirUsuario(Usuario usuario) {
+        // Lógica para banir o usuário
+        System.out.println("Usuário " + usuario.getNomeUsuario() + " foi banido.");
+    }
+}
+package redesocial;
+
+public class UsuarioPremium extends Usuario {
+    public UsuarioPremium(String nomeUsuario, String senha, String email) {
+        super(nomeUsuario, senha, email);
+    }
+
+    public void criarPostagemEmDestaque(String conteudo) {
+        Postagem postagem = new Postagem(conteudo);
+        // Aqui você poderia adicionar uma lógica para destacar a postagem
+        getPostagens().add(postagem);
+    }
+}
+package redesocial;
+
+public class Perfil {
+    private String biografia;
+    private String fotoPerfil;
+
+    public Perfil() {
+        this.biografia = "Biografia padrão";
+        this.fotoPerfil = "foto_default.jpg";
+    }
+
+    public String getBiografia() {
+        return biografia;
+    }
+
+    public void setBiografia(String biografia) {
+        this.biografia = biografia;
+    }
+
+    public String getFotoPerfil() {
+        return fotoPerfil;
+    }
+
+    public void setFotoPerfil(String fotoPerfil) {
+        this.fotoPerfil = fotoPerfil;
+    }
+}
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
+public class Postagem implements Curtivel {
+    private String conteudo;
+    private Date dataCriacao;
+    private int curtidas;
+    private List<String> comentarios;
+
+    public Postagem(String conteudo) {
+        this.conteudo = conteudo;
+        this.dataCriacao = new Date();
+        this.curtidas = 0;
+        this.comentarios = new ArrayList<>();
+    }
+
+    public String getConteudo() {
+        return conteudo;
+    }
+
+    public Date getDataCriacao() {
+        return dataCriacao;
+    }
+
+    @Override
+    public void curtir() {
+        curtidas++;
+    }
+
+    @Override
+    public int getCurtidas() {
+        return curtidas;
+    }
+
+    public void comentar(String comentario) {
+        comentarios.add(comentario);
+    }
+
+    public List<String> getComentarios() {
+        return comentarios;
+    }
+}
+package redesocial;
+
+public interface Curtivel {
+    void curtir();
+    int getCurtidas();
+}
